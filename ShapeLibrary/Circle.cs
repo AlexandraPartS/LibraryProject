@@ -12,7 +12,8 @@
             }
             set
             {
-                DataValidation.BaseCheck(value);
+                DataValidation.CheckPozitive(value);
+                DataValidation.CheckExceedingPossibleValue(value);
                 radius = value;
             }
         }

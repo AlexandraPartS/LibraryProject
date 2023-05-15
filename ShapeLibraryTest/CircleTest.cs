@@ -20,6 +20,14 @@ namespace ShapeLibraryTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Too big value: exceed Double.Maxvalue value.")]
+        public void Test_DoesNot_DataValidation_CheckExceedingPossibleValue()
+        {
+            Circle circle = new Circle(Double.MaxValue * 10);
+        }
+
+
+        [TestMethod]
         public void Test_GetArea()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");

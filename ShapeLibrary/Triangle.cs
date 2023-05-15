@@ -19,20 +19,16 @@ public class Triangle : Shape
         {
             foreach (var side in value)
             {
-                DataValidation.BaseCheck(side);
-                DataValidation.CheckTriangleSide(side, value);
+                DataValidation.CheckPozitive(side);
+                DataValidation.CheckExceedingPossibleValue(side);
+                DataValidation.CheckTriangleSideSum(side, value);
             }
-            DataValidation.ExceedingValue(value);
+            DataValidation.CheckExceedingTheResultForOperationsWithValues(value);
             sides = value;
         }
     }
 
-    //public Triangle(double a, double b, double c) => Sides = new double[] { a, b, c };
-
-    public Triangle(params double[] numbers)
-    {
-        if (numbers.Length == 3) Sides = numbers ;
-    }
+    public Triangle(double a, double b, double c) => Sides = new double[] { a, b, c };
 
     public override double GetArea()
     {
@@ -41,7 +37,7 @@ public class Triangle : Shape
     }
 
     //Task 1.4
-    public bool IsRight()
+    public bool IsRegularTriangle()
     {
         Array.Sort(Sides);
         return Sides[2] == Math.Sqrt(Math.Pow(Sides[0], 2) + Math.Pow(Sides[1], 2));
@@ -53,7 +49,7 @@ public class Triangle : Shape
     }    
     public string DataShow(string plusIsRight)
     {
-        return base.DataShow() + $"Sides: [{String.Join(", ", this.Sides)}] \nIs Right: {this.IsRight()}\n";
+        return base.DataShow() + $"Sides: [{String.Join(", ", this.Sides)}] \nIs Right: {this.IsRegularTriangle()}\n";
     }
 
 }
